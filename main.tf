@@ -20,7 +20,7 @@ resource "random_password" "secret_key_base" {
 
 output "secrets" {
   value = tomap({
-    secret_key_base : random_password.secret_key_base.result
+    SECRET_KEY_BASE : random_password.secret_key_base.result
   })
   description = "map(string) ||| A map of secrets to inject into the service."
   sensitive   = true
