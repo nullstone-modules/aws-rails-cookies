@@ -18,10 +18,12 @@ resource "random_password" "secret_key_base" {
   number           = true
 }
 
-output "secrets" {
-  value = tomap({
-    SECRET_KEY_BASE : random_password.secret_key_base.result
-  })
-  description = "map(string) ||| A map of secrets to inject into the service."
-  sensitive   = true
+resource "aws_secretsmanager_secret" "secret_key_base" {
+  name = "${local.resource_name}/secret_key_base"
+  tags = local.tags
+}
+
+resource "aws_secretsmanager_secret_version" "secret_key_base" {
+  secret_id     = aws_secretsmanager_secret.secret_key_base.id
+  secret_string = random_password.secret_key_base.result
 }
