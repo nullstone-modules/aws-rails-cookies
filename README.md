@@ -1,12 +1,18 @@
-# cap-rails-cookies
+# rails-cookies
 
-Nullstone capability to automatically provide a `SECRET_KEY_BASE` for encrypting rails cookies.
+Nullstone capability to automatically provide a `SECRET_KEY_BASE` for encrypting cookies in rails apps.
+
+## Variables
+
+None
 
 ## Outputs
 
-`secrets: map(string) - sensitive` - A map that contains the secret key base
+`secrets: list(object({ name: string, value: string })) - sensitive`
+  - A list of secrets to inject into the app.
 ```
 {
-  "SECRET_KEY_BASE" = "{value}"
+  name = "SECRET_KEY_BASE"
+  value = "(value)"
 }
 ```
