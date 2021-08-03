@@ -11,8 +11,10 @@ None
 `secrets: list(object({ name: string, value: string })) - sensitive`
   - A list of secrets to inject into the app.
 ```
-{
-  name = "SECRET_KEY_BASE"
-  value = "(value)"
-}
+[
+  {
+    name = "SECRET_KEY_BASE"
+    value = "(value)"
+  }
+]
 ```
