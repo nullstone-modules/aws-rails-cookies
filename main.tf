@@ -26,6 +26,6 @@ output "secrets" {
     }
   ]
 
-  description = "map(string) ||| A map of secrets to inject into the app."
+  description = "list(object({ name: string, value: string })) ||| A list of secrets to inject into the app."
   sensitive   = true
 }
