@@ -18,12 +18,14 @@ resource "random_password" "secret_key_base" {
   number           = true
 }
 
-resource "aws_secretsmanager_secret" "secret_key_base" {
-  name = "${local.resource_name}/secret_key_base"
-  tags = local.tags
-}
+output "secrets" {
+  value = [
+    {
+      name  = "SECRET_KEY_BASE"
+      value = random_password.secret_key_base.result
+    }
+  ]
 
-resource "aws_secretsmanager_secret_version" "secret_key_base" {
-  secret_id     = aws_secretsmanager_secret.secret_key_base.id
-  secret_string = random_password.secret_key_base.result
+  description = "map(string) ||| A map of secrets to inject into the app."
+  sensitive   = true
 }
