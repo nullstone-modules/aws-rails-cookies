@@ -13,7 +13,7 @@ resource "random_password" "secret_key_base" {
   override_special = "abcdef"
   upper            = false
   lower            = false
-  number           = true
+  numeric          = true
 }
 
 output "secrets" {
